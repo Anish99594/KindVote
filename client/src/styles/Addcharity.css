@@ -1,82 +1,161 @@
-/* Add Charity Form Styles */
-.add-charity-form {
-    background: #fff;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
-    max-width: 600px; /* Center the form */
-    margin: 2rem auto;
-   
-     
+/* General Body Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* Form Container */
+  .add-charity-form {
+    background-color: #fff;
+    padding: 40px 50px;
+    max-width: 700px;
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
   
   .add-charity-form h3 {
-    font-size: 2rem;
+    font-size: 1.8rem;
+    font-weight: 700;
     color: #333;
-    margin-bottom: 1.5rem;
+    margin-bottom: 30px;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 1px;
   }
   
-  .add-charity-form .form-group {
-    margin-bottom: 1.5rem;
+  /* Form Group Styles */
+  .form-group {
+    width: 100%;
+    margin-bottom: 20px;
   }
   
-  .add-charity-form .form-group label {
-    font-size: 1rem;
-    color: #555;
+  .form-group label {
+    font-size: 1.1rem;
     font-weight: 600;
-    margin-bottom: 0.5rem;
+    color: #555;
+    margin-bottom: 8px;
     display: block;
   }
   
-  .add-charity-form .form-control {
+  .form-group input,
+  .form-group textarea {
     width: 100%;
-    padding: 0.8rem;
+    padding: 12px;
     font-size: 1rem;
-    border-radius: 5px;
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: black;
+    transition: border-color 0.3s ease;
+  }
+  
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: #007bff;
     outline: none;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
   }
   
-  .add-charity-form .form-control:focus {
-    border-color: #f12711; /* Highlight color on focus */
-    box-shadow: 0 0 5px rgba(255, 82, 82, 0.5); /* Focus shadow effect */
+  /* File Input Styles */
+  .form-group input[type="file"] {
+    padding: 8px;
+    background-color: #f9f9f9;
   }
   
-  .add-charity-form button {
-    background: linear-gradient(45deg, #f12711, #f5af19); /* Bold gradient */
-    color: white;
-    border: none;
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
-    font-weight: bold;
-    border-radius: 30px;
+  .form-group input[type="file"]:hover {
     cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  /* Display IPFS Link */
+  a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Button Styles */
+  button {
+    background-color: #28a745;
+    color: white;
+    padding: 14px 28px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
     width: 100%;
+    max-width: 250px;
+    align-self: center;
   }
   
-  .add-charity-form button:hover {
-    transform: scale(1.05); /* Slight zoom effect on hover */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  button:hover {
+    background-color: #218838;
+    transform: translateY(-3px);
   }
   
-  .add-charity-form button:disabled {
-    background: #ccc;
+  button:disabled {
+    background-color: #d6d6d6;
     cursor: not-allowed;
   }
   
+  /* Loading / Error State */
+  button:disabled {
+    background-color: #999;
+  }
+  
+  button[disabled] {
+    cursor: not-allowed;
+  }
+  
+  /* Toast Notification Styling */
+  .react-hot-toast {
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 1rem;
+  }
+  
+  .react-hot-toast--success {
+    background-color: #28a745;
+    color: #fff;
+  }
+  
+  .react-hot-toast--error {
+    background-color: #e74c3c;
+    color: #fff;
+  }
+  
   /* Responsive Design */
-  @media (max-width: 768px) {
+  @media (max-width: 600px) {
     .add-charity-form {
-      padding: 1.5rem;
+      padding: 20px 15px;
+      max-width: 90%;
     }
   
     .add-charity-form h3 {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
+    }
+  
+    .form-group input,
+    .form-group textarea {
+      font-size: 1rem;
+      padding: 10px;
+    }
+  
+    button {
+      font-size: 1rem;
     }
   }
   

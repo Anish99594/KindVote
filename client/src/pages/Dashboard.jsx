@@ -1,42 +1,63 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/Dashboard.css";
-
-const charityData = [
-  {
-    id: 1,
-    title: "Clean Water Initiative",
-    description: "Provide clean drinking water to remote areas.",
-    image: "https://via.placeholder.com/300x150",
-    votes: 32,
-  },
-  {
-    id: 2,
-    title: "Education for All",
-    description: "Support underprivileged children with quality education.",
-    image: "https://via.placeholder.com/300x150",
-    votes: 332,
-  },
-  {
-    id: 3,
-    title: "Save the Environment",
-    description: "Plant trees and preserve biodiversity.",
-    image: "https://via.placeholder.com/300x150",
-    votes: 432,
-  },
-];
+import toast from "react-hot-toast";
+import { useReadContract } from "wagmi";
+import { KINDVOTE, KINDVOTEABI } from "../abi/config";
 
 const Dashboard = () => {
+  const [charities, setCharities] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch charities using the useReadContract hook
+  const { data, isLoading, isError } = useReadContract({
+    address: KINDVOTE,
+    abi: KINDVOTEABI,
+    functionName: "getCharities",
+  });
+
+  useEffect(() => {
+    if (isLoading) {
+      toast.loading("Fetching charities...");
+    } else if (isError) {
+      toast.error("Failed to fetch charities.");
+      setLoading(false);
+    } else if (data) {
+      const formattedData = data.map((charity) => ({
+        votes: Number(charity.votes),
+        title: charity.title,
+        description: charity.description,
+        image: `https://gateway.pinata.cloud/ipfs/${charity.ipfsHash}`,
+        charityAddress: charity.charityAddress,
+      }));
+
+      setCharities(formattedData);
+      setLoading(false);
+      toast.success("Charities fetched successfully!");
+    }
+  }, [data, isLoading, isError]);
+
+  if (loading) {
+    return <div className="dashboard">Loading charities...</div>;
+  }
+
   return (
     <div className="dashboard">
       <div className="charity-cards-container">
-        {charityData.map((charity) => (
-          <div className="charity-card" key={charity.id}>
-            <img src={charity.image} alt={charity.title} />
-            <h3>{charity.title}</h3>
-            <p>{charity.description}</p>
-            <button>Votes: {charity.votes}</button>
-          </div>
-        ))}
+        {charities.length > 0 ? (
+          charities.map((charity, index) => (
+            <div className="charity-card" key={index}>
+              <img src={charity.image} alt={charity.title} />
+              <h3>{charity.title}</h3>
+              <p>{charity.description}</p>
+              <p>
+                <strong>Address:</strong> {charity.charityAddress}
+              </p>
+              <button>Votes: {charity.votes}</button>
+            </div>
+          ))
+        ) : (
+          <div>No charities available.</div>
+        )}
       </div>
     </div>
   );

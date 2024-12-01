@@ -14,16 +14,16 @@ footer {
     width: 100%; /* Full width of the screen */
     box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow for elevated effect */
     z-index: 1000; /* Ensure footer stays above other elements */
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
   }
   
   footer p {
-    display: flex;
     margin: 0;
     color: #ffffffcc; /* Slightly muted white for the text */
     font-size: 1.1rem;
     text-transform: uppercase;
-    justify-content: end;
-    
   }
   
   footer p:hover {
@@ -42,4 +42,3 @@ footer {
       font-size: 1rem;
     }
   }
-  

@@ -1,61 +1,84 @@
 import React, { useState } from "react";
-import { ethers } from "ethers";
-//import { getContractInstance } from "../utils/interact";
+import {
+  useAccount,
+  useWriteContract,
+  useWaitForTransactionReceipt,
+  useReadContract,
+} from "wagmi";
+import { KINDVOTE, KINDVOTEABI } from "../abi/config";
+import toast from "react-hot-toast";
+import { parseEther, parseUnits } from "ethers";
 import "../styles/Donate.css";
 
-const Donate = () => {
-  const [donationAmount, setDonationAmount] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+const DonationForm = () => {
+  const [amount, setAmount] = useState("");
 
-  const handleDonate = async () => {
-    if (!donationAmount || isNaN(donationAmount) || donationAmount <= 0) {
-      alert("Please enter a valid donation amount.");
+  const { writeContractAsync, isPending } = useWriteContract();
+
+  const { address, signer } = useAccount(); // Get the address and signer directly from useAccount
+  const CONTRACT_ADDRESS = KINDVOTE;
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (amount <= 0) {
+      toast.error("Please enter a valid donation amount.");
       return;
     }
 
     try {
-      setIsLoading(true);
-      //const contract = await getContractInstance();
-      const tx = await contract.donate({
-        value: ethers.utils.parseEther(donationAmount),
-      });
-      await tx.wait();
-      alert("Thank you for your donation!");
-      setDonationAmount("");
-    } catch (error) {
-      console.error("Donation failed:", error);
-      alert("Donation failed. Please try again.");
-    } finally {
-      setIsLoading(false);
+      await toast.promise(
+        (async () => {
+          const amountXFI = parseUnits(amount.toString(), 18);
+          // Prepare contract call
+          console.log("Amount", amountXFI);
+
+          const { hash } = await writeContractAsync({
+            address: CONTRACT_ADDRESS,
+            abi: KINDVOTEABI,
+            functionName: "donate",
+            args: [],
+            value: amountXFI,
+          });
+        })(),
+        {
+          loading: `Approving token ...`, // Loading state message
+          success: (hash) => `Approval successful! Transaction Hash:`, // Success state message with the hash
+          // error: (error) => `Approval failed: ${error.message}`, // Error state message
+        }
+      );
+    } catch (err) {
+      // console.log("error message" , err.message);
+      toast.error(err.message);
     }
   };
-
   return (
-    <div className="donate-container">
-      <h2>Donate to KindVote</h2>
-      <p>
-        Support KindVote by donating Ether. Your contributions will be used to
-        vote and support your chosen charities.
-      </p>
-      <div className="form-group mt-4">
-        <label>Enter Amount (in XFI):</label>
+    <div className="form-container">
+      <h2 className="text-sm font-semibold text-gray-500 underline">
+        1 XFI = 10 GT(Governance Tokens)
+      </h2>
+      <h2 className="text-sm font-semibold text-gray-500 underline">
+        Donate Funds
+      </h2>
+      <form>
+        <label>Amount to Donate (in XFI):</label>
         <input
           type="number"
-          className="form-control"
-          placeholder="e.g., 0.5"
-          value={donationAmount}
-          onChange={(e) => setDonationAmount(e.target.value)}
+          placeholder="Enter amount"
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
         />
-      </div>
-      <button
-        className="btn btn-primary mt-3"
-        onClick={handleDonate}
-        disabled={isLoading}
-      >
-        {isLoading ? "Processing..." : "Donate"}
-      </button>
+        <button
+          type="submit"
+          onClick={handleSubmit}
+          disabled={!amount || amount <= 0}
+        >
+          Donate
+        </button>
+      </form>
     </div>
   );
 };
 
-export default Donate;
+export default DonationForm;

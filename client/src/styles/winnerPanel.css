@@ -1,62 +1,138 @@
-/* Winner Panel Styles */
-.winner-panel {
-    background-color: #f8f9fa; /* Light background for subtle contrast */
-    border: 1px solid #ddd; /* Light border for definition */
-    border-radius: 12px; /* Rounded corners for smooth edges */
-    padding: 2rem;
-    max-width: 600px; /* Control the width */
-    margin: 2rem auto; /* Center the panel */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    font-family: 'Arial', sans-serif;
-    text-align: left;
+/* General Body Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f7fc;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
   }
   
-  /* Title Style */
+  /* Winner Panel Styles */
+  .winner-panel {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 30px 40px;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
   .winner-panel-title {
-    font-size: 2rem;
-    font-weight: 600;
+    font-size: 1.8rem;
+    font-weight: 700;
     color: #333;
-    margin-bottom: 1.5rem;
+    margin-bottom: 24px;
     text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
   }
   
-  /* Text Styling */
+  /* Text Information */
   .winner-panel p {
     font-size: 1.1rem;
-    color: #555;
-    line-height: 1.6;
-    margin-bottom: 1rem;
+    color: #444;
+    margin-bottom: 12px;
   }
   
   .winner-panel p strong {
-    color: #333;
+    color: #007bff;
     font-weight: 600;
   }
   
-  /* Image Style */
+  /* Winner Image */
   .winner-panel-img {
     border-radius: 8px;
-    margin-top: 1.5rem;
-    max-height: 300px; /* Ensure the image has a consistent size */
-    object-fit: cover;
-    width: 100%; /* Full width for responsiveness */
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  /* Button Styles */
+  button {
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 250px;
+    align-self: center;
+  }
+  
+  button:hover {
+    background-color: #c0392b;
+    transform: translateY(-3px);
+  }
+  
+  button:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+  }
+  
+  /* Loading / Error State Text */
+  p.loading,
+  p.error {
+    font-size: 1.1rem;
+    color: #e74c3c;
+    font-weight: 500;
+    text-align: center;
+  }
+  
+  p.loading {
+    color: #f39c12;
+  }
+  
+  p.error {
+    color: #e74c3c;
+  }
+  
+  /* Toast Notification Styling */
+  .react-hot-toast {
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 1rem;
+  }
+  
+  .react-hot-toast--success {
+    background-color: #28a745;
+    color: #fff;
+  }
+  
+  .react-hot-toast--error {
+    background-color: #e74c3c;
+    color: #fff;
   }
   
   /* Responsive Design */
-  @media (max-width: 768px) {
+  @media (max-width: 600px) {
     .winner-panel {
-      padding: 1.5rem;
+      padding: 20px 15px;
       max-width: 90%;
     }
   
     .winner-panel-title {
-      font-size: 1.8rem;
+      font-size: 1.5rem;
     }
   
     .winner-panel p {
+      font-size: 1rem;
+    }
+  
+    button {
       font-size: 1rem;
     }
   }

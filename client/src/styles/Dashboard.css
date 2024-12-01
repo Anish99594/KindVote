@@ -1,7 +1,7 @@
 /* Dashboard Page */
 .dashboard {
   padding: 2rem 1.5rem; /* Space inside the dashboard */
-  margin-top: 20rem; /* Push content below the fixed header */
+  margin-top: 18rem; /* Push content below the fixed header */
   margin-bottom: 10rem; /* Space before the footer */
   min-height: calc(100vh - 16rem); /* Full viewport height minus header */
   display: flex;

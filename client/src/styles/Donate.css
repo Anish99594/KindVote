@@ -1,98 +1,84 @@
-/* Donate Component Styles */
-.donate-container {
-    max-width: 600px;
-    margin: 4rem auto; /* Center the container with margin */
-    padding: 2rem;
-    background: #ffffff; /* Clean white background */
+/* Container */
+.form-container {
+    background-color: #f9f9f9;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    text-align: center;
+    padding: 30px;
+    max-width: 400px;
+    margin: 0 auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
   
-  .donate-container h2 {
-    font-size: 2rem;
-    color: #333; /* Dark text for readability */
-    margin-bottom: 1rem;
-    text-transform: uppercase; /* Uppercase title for emphasis */
-    font-weight: bold;
-    letter-spacing: 1.5px;
-  }
-  
-  .donate-container p {
-    font-size: 1rem;
-    color: #555; /* Softer text color for description */
-    line-height: 1.5;
-    margin-bottom: 2rem;
-  }
-  
-  .donate-container .form-group {
-    margin-bottom: 1.5rem;
-    text-align: left;
-  }
-  
-  .donate-container .form-group label {
-    display: block;
-    font-size: 1rem;
+  /* Heading */
+  .form-container h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
     color: #333;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
+    text-align: center;
+    margin-bottom: 20px;
   }
   
-  .donate-container .form-control {
+  /* Label */
+  form label {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 8px;
+    display: block;
+  }
+  
+  /* Input */
+  form input {
     width: 100%;
-    padding: 0.75rem;
-    font-size: 1rem;
-    border: 1px solid #ddd;
+    padding: 12px;
+    margin: 8px 0;
+    border: 2px solid #ddd;
     border-radius: 8px;
-    transition: border-color 0.3s ease;
-  }
-  
-  .donate-container .form-control:focus {
-    border-color: #f12711; /* Highlighted border */
-    outline: none;
-    box-shadow: 0 0 5px rgba(241, 39, 17, 0.5); /* Glow effect */
-  }
-  
-  .donate-container button {
-    background: linear-gradient(45deg, #f12711, #f5af19); /* Vibrant gradient */
-    color: #fff;
-    border: none;
-    padding: 0.8rem 2rem;
     font-size: 1rem;
-    font-weight: bold;
-    border-radius: 30px;
+    transition: border-color 0.3s ease;
+    width: 93%;
+  }
+  
+  form input:focus {
+    border-color: #4f9dff;
+    outline: none;
+  }
+  
+  /* Button */
+  button {
+    background-color: #4f9dff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    width: 100%;
+    margin-top: 12px;
+    transition: background-color 0.3s ease;
   }
   
-  .donate-container button:hover {
-    transform: scale(1.05); /* Slight zoom effect */
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2); /* Deeper shadow */
+  button:hover {
+    background-color: #357ac8;
   }
   
-  .donate-container button:disabled {
-    background: gray; /* Disable button appearance */
+  button:disabled {
+    background-color: #ccc;
     cursor: not-allowed;
-    box-shadow: none;
   }
   
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .donate-container {
-      padding: 1.5rem;
-    }
+  /* Error/Success Toast Messages */
+  .react-hot-toast {
+    font-size: 0.875rem;
+    border-radius: 8px;
+    padding: 10px;
+    color: #fff;
+  }
   
-    .donate-container h2 {
-      font-size: 1.8rem;
-    }
+  .react-hot-toast--error {
+    background-color: #ff4d4d;
+  }
   
-    .donate-container p {
-      font-size: 0.9rem;
-    }
-  
-    .donate-container button {
-      padding: 0.7rem 1.5rem;
-    }
+  .react-hot-toast--success {
+    background-color: #28a745;
   }
   
