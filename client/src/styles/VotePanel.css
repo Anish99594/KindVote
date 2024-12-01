@@ -1,0 +1,98 @@
+/* Vote Panel Styles */
+.vote-panel-container {
+    max-width: 600px;
+    margin: 4rem auto; /* Center the form */
+    padding: 2rem;
+    background: #ffffff; /* Clean white background */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Depth effect */
+    text-align: center;
+  }
+  
+  .vote-panel-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333; /* Dark text for emphasis */
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+  
+  .vote-panel-container .form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+  }
+  
+  .vote-panel-container .form-group label {
+    font-size: 1rem;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  
+  .vote-panel-container .form-control {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .vote-panel-container .form-control:focus {
+    border-color: #f12711; /* Vibrant highlight */
+    outline: none;
+    box-shadow: 0 0 5px rgba(241, 39, 17, 0.5); /* Glow effect */
+  }
+  
+  .vote-panel-container select.form-control {
+    appearance: none; /* Remove default dropdown arrow */
+    background: #f8f8f8;
+    cursor: pointer;
+  }
+  
+  .vote-panel-container button {
+    background: linear-gradient(45deg, #f12711, #f5af19); /* Gradient button */
+    color: #fff;
+    border: none;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Subtle depth */
+  }
+  
+  .vote-panel-container button:hover {
+    transform: scale(1.05); /* Slight zoom effect */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+  }
+  
+  .vote-panel-container button:disabled {
+    background: gray; /* Disabled button appearance */
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .vote-panel-container {
+      padding: 1.5rem;
+    }
+  
+    .vote-panel-title {
+      font-size: 1.8rem;
+    }
+  
+    .vote-panel-container .form-control {
+      font-size: 0.9rem;
+      padding: 0.6rem;
+    }
+  
+    .vote-panel-container button {
+      padding: 0.7rem 1.5rem;
+    }
+  }
+  

@@ -1,0 +1,156 @@
+/* Header Styles */
+header {
+  background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+  color: #fff;
+  padding: 1.2rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed; /* Fixed at the top */
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+  transition: all 0.3s ease;
+}
+
+/* Centering and styling the container */
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Header title styling */
+h1 {
+  font-size: 3.2rem; /* Larger size for visual impact */
+  font-weight: bold;
+  letter-spacing: 5px; /* Increased spacing for impact */
+  color: #fff;
+  text-transform: uppercase;
+  text-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.1); /* Shadow for a 3D effect */
+  transition: transform 0.3s ease, color 0.3s ease; /* Subtle animation */
+}
+
+h1:hover {
+  transform: scale(1.1); /* Slight zoom effect */
+  color: #fdbb2d; /* Glow effect color */
+}
+
+/* Navigation menu styles */
+nav {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.nav-link {
+  font-size: 1.15rem;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600; /* Bold for better readability */
+  position: relative;
+  text-transform: capitalize; /* Capitalize link text */
+  padding: 5px;
+  transition: all 0.3s ease, transform 0.3s ease;
+}
+
+.nav-link::before {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+  transform: scaleX(0); /* Initially, the underline is hidden */
+  transition: transform 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #fdbb2d; /* Highlight color */
+  transform: scale(1.05); /* Slight zoom effect on hover */
+  text-decoration: none;
+}
+
+.nav-link:hover::before {
+  transform: scaleX(1); /* Animate the underline effect on hover */
+}
+
+/* Button styles */
+button {
+  background: linear-gradient(45deg, #f12711, #f5af19); /* Bold gradient */
+  color: white;
+  border: none;
+  padding: 0.8rem 2rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15); /* Subtle shadow for depth */
+  position: relative;
+}
+
+button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.2);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.05); /* Slight zoom effect on hover */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* Deeper shadow on hover */
+}
+
+button:hover::after {
+  opacity: 1; /* Glowing effect on hover */
+}
+
+button:focus {
+  outline: none;
+}
+
+button:disabled {
+  background: gray;
+  cursor: not-allowed;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  header {
+    padding: 1rem 1.5rem; /* Adjust padding for mobile */
+  }
+
+  .container {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  nav {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .nav-link {
+    font-size: 1.3rem;
+    text-transform: none; /* Don't capitalize text on smaller screens */
+  }
+
+  button {
+    width: 100%;
+    padding: 1rem;
+  }
+}

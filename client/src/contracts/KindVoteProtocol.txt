@@ -1,0 +1,156 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.26;
+
+import "./IMintableERC20.sol"; // Import the extended interface
+
+contract KindVote {
+    struct Charity {
+        uint256 votes;
+        string title;
+        address payable charityAddress;
+        string description;
+        string ipfsHash;
+        uint256 deletionTime;
+    }
+
+    address public owner;
+    uint256 public maxGovernanceTokensPerUser = 10000; // Max governance tokens a user can earn
+    uint256 public governanceTokensPerXFI = 10; // 1 XFI = 10 governance tokens
+    uint256 public votingDuration = 1 weeks; // Weekly voting period
+    uint256 public lastResetTime;
+
+    Charity[] public charities;
+    mapping(address => uint256) public governanceTokens; // Tracks user governance tokens
+    mapping(address => uint256) public donations; // Tracks donations per user
+
+    IMintableERC20 public governanceToken; // Updated governance token interface
+    
+    // Declare the state variable to store the winning charity details
+    Charity public winningCharityDetails;
+
+    event Donation(address indexed user, uint256 amount, uint256 governanceTokensIssued);
+    event CharityAdded(address indexed charityAddress, string description, string ipfsHash, string title);    
+    event VotingReset(address winner, uint256 fundsDistributed);
+    event CharityRemoved(address indexed charity);
+
+    constructor(address _governanceToken) {
+        owner = msg.sender;
+        governanceToken = IMintableERC20(_governanceToken); // Use the extended interface
+        lastResetTime = block.timestamp;
+    }
+
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Not authorized");
+        _;
+    }
+
+    // Add a charity with its IPFS hash
+    function addCharity(address payable charityAddress, string memory description, string memory ipfsHash, string memory title) public {
+        charities.push(Charity({votes: 0, title: title, charityAddress: charityAddress, description: description, ipfsHash: ipfsHash, deletionTime: 1 weeks}));
+        emit CharityAdded(charityAddress, description, ipfsHash, title);
+    }
+
+    // Donate native XFI and receive governance tokens
+    function donate() public payable {
+        uint256 amount = msg.value; // The Ether (native XFI) sent with the transaction
+        require(amount > 0, "Donation must be greater than zero");
+
+        // Calculate governance tokens to mint
+        uint256 tokensToMint = (amount / 1 ether) * governanceTokensPerXFI;
+        if (governanceTokens[msg.sender] + tokensToMint > maxGovernanceTokensPerUser) {
+            tokensToMint = maxGovernanceTokensPerUser - governanceTokens[msg.sender];
+        }
+
+        // Update user's governance tokens and donations
+        governanceTokens[msg.sender] += tokensToMint;
+        donations[msg.sender] += amount;
+
+        // Mint governance tokens to the user
+        governanceToken.mint(msg.sender, tokensToMint);
+
+        emit Donation(msg.sender, amount, tokensToMint);
+    }
+
+
+    // Cast a vote for a charity
+    function vote(uint256 charityIndex, uint256 amount) public {
+        require(charityIndex < charities.length, "Invalid charity index");
+        require(governanceToken.balanceOf(msg.sender) > amount, "No governance tokens available");
+
+        // Burn governance tokens when voting
+        //uint256 userBalance = governanceToken.balanceOf(msg.sender);
+        governanceToken.transferFrom(msg.sender, address(this), amount);
+
+        charities[charityIndex].votes += amount;
+    }
+
+    // Reset voting weekly and distribute funds to the winner
+    function resetVoting() public {
+        require(block.timestamp >= lastResetTime + votingDuration, "Voting period not over");
+
+        // Find the winning charity
+        uint256 winningIndex;
+        uint256 highestVotes;
+        for (uint256 i = 0; i < charities.length; i++) {
+            if (charities[i].votes > highestVotes) {
+                highestVotes = charities[i].votes;
+                winningIndex = i;
+            }
+        }
+
+        // Mark the winning charity
+        address payable winningCharity = charities[winningIndex].charityAddress;
+        uint256 totalDonations = address(this).balance;
+
+        // Distribute funds to the winning charity
+        (bool success, ) = winningCharity.call{value: totalDonations}("");
+        require(success, "Fund transfer failed");
+
+        emit VotingReset(winningCharity, totalDonations);
+
+        // Add a buffer period for the winner
+        uint256 winnerDeletionTime = block.timestamp + 1 weeks;
+
+        // Track winning charity separately for delayed deletion
+        winningCharityDetails = Charity({
+            votes: charities[winningIndex].votes,
+            title: charities[winningIndex].title,
+            charityAddress: winningCharity,
+            description: charities[winningIndex].description,
+            ipfsHash: charities[winningIndex].ipfsHash,
+            deletionTime: winnerDeletionTime
+        });
+
+        // Remove the winning charity from the active list
+        charities[winningIndex] = charities[charities.length - 1];
+        charities.pop();
+
+        // Reset voting period
+        lastResetTime = block.timestamp;
+    }
+
+    function removeWinningCharity() public {
+        require(
+            block.timestamp >= winningCharityDetails.deletionTime,
+            "Winning charity deletion time has not elapsed"
+        );
+
+        // Clear the winning charity details
+        delete winningCharityDetails;
+    }
+
+
+    // Get the list of charities
+    function getCharities() public view returns (Charity[] memory) {
+        return charities;
+    }
+
+    // Withdraw any remaining funds (for emergencies)
+    function withdrawFunds() public onlyOwner {
+        uint256 balance = address(this).balance;
+        (bool success, ) = owner.call{value: balance}("");
+        require(success, "Withdrawal failed");
+    }
+
+
+}

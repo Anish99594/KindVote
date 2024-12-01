@@ -1,0 +1,82 @@
+/* Add Charity Form Styles */
+.add-charity-form {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    max-width: 600px; /* Center the form */
+    margin: 2rem auto;
+   
+     
+  }
+  
+  .add-charity-form h3 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .add-charity-form .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .add-charity-form .form-group label {
+    font-size: 1rem;
+    color: #555;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  
+  .add-charity-form .form-control {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .add-charity-form .form-control:focus {
+    border-color: #f12711; /* Highlight color on focus */
+    box-shadow: 0 0 5px rgba(255, 82, 82, 0.5); /* Focus shadow effect */
+  }
+  
+  .add-charity-form button {
+    background: linear-gradient(45deg, #f12711, #f5af19); /* Bold gradient */
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+  }
+  
+  .add-charity-form button:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .add-charity-form button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .add-charity-form {
+      padding: 1.5rem;
+    }
+  
+    .add-charity-form h3 {
+      font-size: 1.8rem;
+    }
+  }
+  

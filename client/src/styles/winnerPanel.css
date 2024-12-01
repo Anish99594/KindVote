@@ -1,0 +1,63 @@
+/* Winner Panel Styles */
+.winner-panel {
+    background-color: #f8f9fa; /* Light background for subtle contrast */
+    border: 1px solid #ddd; /* Light border for definition */
+    border-radius: 12px; /* Rounded corners for smooth edges */
+    padding: 2rem;
+    max-width: 600px; /* Control the width */
+    margin: 2rem auto; /* Center the panel */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    font-family: 'Arial', sans-serif;
+    text-align: left;
+  }
+  
+  /* Title Style */
+  .winner-panel-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  /* Text Styling */
+  .winner-panel p {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  
+  .winner-panel p strong {
+    color: #333;
+    font-weight: 600;
+  }
+  
+  /* Image Style */
+  .winner-panel-img {
+    border-radius: 8px;
+    margin-top: 1.5rem;
+    max-height: 300px; /* Ensure the image has a consistent size */
+    object-fit: cover;
+    width: 100%; /* Full width for responsiveness */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .winner-panel {
+      padding: 1.5rem;
+      max-width: 90%;
+    }
+  
+    .winner-panel-title {
+      font-size: 1.8rem;
+    }
+  
+    .winner-panel p {
+      font-size: 1rem;
+    }
+  }
+  

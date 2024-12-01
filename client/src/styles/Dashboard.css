@@ -1,0 +1,112 @@
+/* Dashboard Page */
+.dashboard {
+  padding: 2rem 1.5rem; /* Space inside the dashboard */
+  margin-top: 20rem; /* Push content below the fixed header */
+  margin-bottom: 10rem; /* Space before the footer */
+  min-height: calc(100vh - 16rem); /* Full viewport height minus header */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden; /* Avoid extra scrolling beyond the viewport */
+  position: relative; /* Ensure content stays contained */
+}
+
+/* Dashboard Header */
+.dashboard h2 {
+  font-size: 2.4rem;
+  color: #fff;
+  margin-bottom: 2rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+/* Scrollable Charity Cards */
+.charity-cards-container {
+  display: flex;
+  flex-wrap: wrap; /* Adjust layout for responsive grids */
+  justify-content: center;
+  gap: 1.5rem; /* Space between cards */
+  overflow-y: auto; /* Enable vertical scrolling for cards */
+  max-height: calc(100vh - 15rem); /* Prevent overflowing into footer */
+  padding: 1rem;
+  width: 100%;
+  border-radius: 8px;
+}
+
+/* Charity Card */
+.charity-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Light shadow */
+  padding: 1.5rem;
+  width: 280px; /* Consistent card width */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.charity-card:hover {
+  transform: translateY(-10px); /* Slight hover effect */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+}
+
+.charity-card img {
+  width: 100%;
+  height: 150px;
+  border-radius: 8px;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+.charity-card h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  margin: 0.5rem 0;
+}
+
+.charity-card p {
+  font-size: 1rem;
+  color: #555;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.charity-card button {
+  background: linear-gradient(45deg, #f12711, #f5af19); /* Vibrant gradient */
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.charity-card button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dashboard {
+    padding: 1.5rem; /* Adjust padding for smaller screens */
+  }
+
+  .charity-cards-container {
+    max-height: 55vh; /* Reduce height for smaller devices */
+  }
+
+  .charity-card {
+    width: 100%; /* Full width cards for mobile */
+  }
+
+  .dashboard h2 {
+    font-size: 2rem;
+  }
+}

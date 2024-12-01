@@ -1,0 +1,98 @@
+/* Donate Component Styles */
+.donate-container {
+    max-width: 600px;
+    margin: 4rem auto; /* Center the container with margin */
+    padding: 2rem;
+    background: #ffffff; /* Clean white background */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    text-align: center;
+  }
+  
+  .donate-container h2 {
+    font-size: 2rem;
+    color: #333; /* Dark text for readability */
+    margin-bottom: 1rem;
+    text-transform: uppercase; /* Uppercase title for emphasis */
+    font-weight: bold;
+    letter-spacing: 1.5px;
+  }
+  
+  .donate-container p {
+    font-size: 1rem;
+    color: #555; /* Softer text color for description */
+    line-height: 1.5;
+    margin-bottom: 2rem;
+  }
+  
+  .donate-container .form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+  }
+  
+  .donate-container .form-group label {
+    display: block;
+    font-size: 1rem;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  .donate-container .form-control {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .donate-container .form-control:focus {
+    border-color: #f12711; /* Highlighted border */
+    outline: none;
+    box-shadow: 0 0 5px rgba(241, 39, 17, 0.5); /* Glow effect */
+  }
+  
+  .donate-container button {
+    background: linear-gradient(45deg, #f12711, #f5af19); /* Vibrant gradient */
+    color: #fff;
+    border: none;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+  
+  .donate-container button:hover {
+    transform: scale(1.05); /* Slight zoom effect */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2); /* Deeper shadow */
+  }
+  
+  .donate-container button:disabled {
+    background: gray; /* Disable button appearance */
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .donate-container {
+      padding: 1.5rem;
+    }
+  
+    .donate-container h2 {
+      font-size: 1.8rem;
+    }
+  
+    .donate-container p {
+      font-size: 0.9rem;
+    }
+  
+    .donate-container button {
+      padding: 0.7rem 1.5rem;
+    }
+  }
+  
