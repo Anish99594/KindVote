@@ -88,12 +88,13 @@ const VotePanel = () => {
             <input
               id="amount"
               type="number"
-              className="form-control"
+              className="inputbox form-control"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               min="1"
               placeholder="Enter amount"
               required
+              style={{ backgroundColor: "white" }}
             />
           </div>
           <button
